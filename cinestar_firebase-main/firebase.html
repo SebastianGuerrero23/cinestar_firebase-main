@@ -35,19 +35,19 @@
         const data = await fetch('https://oaemdl.es/cinestar_sweb_php/cines')
         const cines = await data.json()
         cines.data.forEach(async cine => {
-          const Tarifas = await fetch( `https://oaemdl.es/cinestar_sweb_php/cines/${cine.id}/tarifas`)
-          cine.tarifas = (await dataTarifas.json())
+          const tarifas = await fetch( `https://oaemdl.es/cinestar_sweb_php/cines/${cine.id}/tarifas`)
+          cine.tarifas = (await tarifas.json()).data
 
-          const dataPeliculas = await fetch( `https://oaemdl.es/cinestar_sweb_php/cines/${cine.id}/peliculas`)
-          cine.peliculas = (await dataPeliculas.json())
+          const peliculas = await fetch( `https://oaemdl.es/cinestar_sweb_php/cines/${cine.id}/peliculas`)
+          cine.peliculas = (await peliculas.json()).data
 
           addDoc(collection(db,'cines'), cine)
         })
 
       }
       
-      setPeliculas() 
-      //setCines()
+      //setPeliculas() 
+      setCines()
     </script>
 
   </body>
